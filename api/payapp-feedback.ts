@@ -3,6 +3,19 @@ import { timingSafeEqual } from 'node:crypto';
 const TEST_PRICE = '1000';
 const TEST_GOOD_NAME = 'Natural Beauty UGC 제작 가이드 연동 테스트';
 
+const successResponse = () => new Response('SUCCESS', {
+  status: 200,
+  headers: {
+    'Content-Type': 'text/plain; charset=utf-8',
+    'Cache-Control': 'no-store',
+  },
+});
+
+// PayApp checks that the feedback URL is reachable before opening payment.
+export function GET() {
+  return successResponse();
+}
+
 function matches(actual: FormDataEntryValue | null, expected: string | undefined) {
   if (typeof actual !== 'string' || !expected) return false;
 
@@ -31,11 +44,5 @@ export async function POST(request: Request) {
     });
   }
 
-  return new Response('SUCCESS', {
-    status: 200,
-    headers: {
-      'Content-Type': 'text/plain; charset=utf-8',
-      'Cache-Control': 'no-store',
-    },
-  });
+  return successResponse();
 }
