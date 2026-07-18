@@ -80,6 +80,8 @@ export function PublicWebsite() {
   const [payAppUserId, setPayAppUserId] = useState('');
   const [payAppReady, setPayAppReady] = useState(false);
   const payAppTestEnabled = true;
+  const inquirySent = typeof window !== 'undefined'
+    && new URLSearchParams(window.location.search).get('inquiry') === 'sent';
   const usesComparisonPlaceholder = campaign.images.comparisonSmoothed === campaign.images.comparisonNatural;
 
   useLayoutEffect(() => {
@@ -644,18 +646,46 @@ export function PublicWebsite() {
 
         <section className="contact-section reveal-section" id="contact" data-reveal-section>
           <div className="section-inner contact-inner">
-            <h2 className="reveal-item" style={{ '--reveal-order': 0 } as CSSProperties}>브랜드의 다음 장면,<br /><span>같이 찾아볼까요?</span></h2>
-            <p className="reveal-item" style={{ '--reveal-order': 1 } as CSSProperties}>
-              제품과 브랜드의 분위기에 맞는 AI 이미지와 영상 캠페인을 함께 설계합니다.
-            </p>
-            <button
-              className="text-link reveal-item"
-              style={{ '--reveal-order': 2 } as CSSProperties}
-              type="button"
-              disabled
-            >
-              프로젝트 문의 준비 중 <span aria-hidden="true">↗</span>
-            </button>
+            <div className="contact-copy">
+              <h2 className="reveal-item" style={{ '--reveal-order': 0 } as CSSProperties}>브랜드의 다음 장면,<br /><span>같이 찾아볼까요?</span></h2>
+              <p className="reveal-item" style={{ '--reveal-order': 1 } as CSSProperties}>
+                제품과 브랜드의 분위기에 맞는 AI 이미지와 영상 캠페인을 함께 설계합니다.
+              </p>
+            </div>
+
+            <form className="inquiry-form reveal-item" style={{ '--reveal-order': 2 } as CSSProperties} action="https://formsubmit.co/lroi23667@gmail.com" method="POST">
+              <input type="hidden" name="_subject" value="[HEZZ STUDIO] 새로운 프로젝트 문의" />
+              <input type="hidden" name="_next" value="https://hezzstudio.site/?inquiry=sent#contact" />
+              <input type="hidden" name="_template" value="table" />
+              <input type="text" name="_honey" className="inquiry-honeypot" tabIndex={-1} autoComplete="off" />
+
+              <div className="inquiry-grid">
+                <label><span>이름 / 담당자명 *</span><input type="text" name="name" autoComplete="name" required /></label>
+                <label><span>이메일 *</span><input type="email" name="email" autoComplete="email" required /></label>
+                <label><span>브랜드명</span><input type="text" name="brand" autoComplete="organization" /></label>
+                <label>
+                  <span>문의 유형 *</span>
+                  <select name="project_type" defaultValue="" required>
+                    <option value="" disabled>선택해 주세요</option>
+                    <option>AI 이미지 제작</option>
+                    <option>제품 후기 영상 제작</option>
+                    <option>광고 콘텐츠 제작</option>
+                    <option>기타</option>
+                  </select>
+                </label>
+                <label><span>희망 일정</span><input type="text" name="schedule" placeholder="예: 8월 둘째 주" /></label>
+                <label><span>예산 범위</span><input type="text" name="budget" placeholder="예: 50만 원 내외" /></label>
+                <label className="inquiry-wide"><span>제작 내용 *</span><textarea name="message" rows={6} placeholder="필요한 이미지·영상의 용도와 수량을 알려주세요." required /></label>
+                <label className="inquiry-wide"><span>참고 링크</span><input type="url" name="reference_url" placeholder="https://" /></label>
+              </div>
+
+              <label className="inquiry-consent">
+                <input type="checkbox" name="privacy_consent" value="동의" required />
+                <span>문의 답변을 위한 개인정보 수집·이용에 동의합니다. *</span>
+              </label>
+              {inquirySent && <p className="inquiry-success" role="status">문의가 접수되었습니다. 확인 후 이메일로 연락드리겠습니다.</p>}
+              <button className="public-button inquiry-submit" type="submit">프로젝트 문의 보내기 <span aria-hidden="true">↗</span></button>
+            </form>
           </div>
         </section>
       </main>
