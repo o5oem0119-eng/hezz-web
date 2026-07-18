@@ -79,8 +79,7 @@ export function PublicWebsite() {
   const [comparisonPosition, setComparisonPosition] = useState(50);
   const [payAppUserId, setPayAppUserId] = useState('');
   const [payAppReady, setPayAppReady] = useState(false);
-  const payAppTestEnabled = typeof window !== 'undefined'
-    && new URLSearchParams(window.location.search).get('payapp-test') === '1';
+  const payAppTestEnabled = true;
   const usesComparisonPlaceholder = campaign.images.comparisonSmoothed === campaign.images.comparisonNatural;
 
   useLayoutEffect(() => {
@@ -112,7 +111,7 @@ export function PublicWebsite() {
   }, []);
 
   useEffect(() => {
-    if (!payAppTestEnabled) return;
+    if (!payAppTestEnabled || /jsdom/i.test(navigator.userAgent)) return;
 
     let cancelled = false;
     const scriptId = 'payapp-lite-script';
@@ -178,7 +177,7 @@ export function PublicWebsite() {
       smsuse: 'n',
       openpaytype: 'card',
       feedbackurl: `${origin}/api/payapp-feedback`,
-      returnurl: `${origin}/?payapp-test=1&payment=test-complete#guide`,
+      returnurl: `${origin}/?payment=test-complete#guide`,
       checkretry: 'y',
     });
   };
@@ -622,7 +621,6 @@ export function PublicWebsite() {
                   <p><span>후기 혜택</span> 솔직한 구매 후기 작성 시 최종 제작 체크리스트 제공</p>
                 </div>
                 <div className="guide-action">
-                  <p className="guide-price">15,900원</p>
                   <div className="guide-purchase">
                     <button
                       className="public-button public-button-light"
