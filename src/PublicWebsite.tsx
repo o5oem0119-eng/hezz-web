@@ -351,6 +351,9 @@ export function PublicWebsite() {
         ? Math.max(1, track.scrollWidth - (viewport?.clientWidth ?? window.innerWidth))
         : horizontalDistance;
       const scrollCompletion = clamp(horizontalOffset / maxHorizontalOffset);
+      const headingVisibility = 1 - clamp(scrollCompletion / 0.1);
+      section.style.setProperty('--work-heading-opacity', headingVisibility.toFixed(4));
+      section.style.setProperty('--work-heading-y', `${(-12 * (1 - headingVisibility)).toFixed(2)}px`);
       const endReveal = clamp((scrollCompletion - 0.93) / 0.07);
 
       cards.forEach((card, index) => {
@@ -422,6 +425,8 @@ export function PublicWebsite() {
       mobileQuery.removeEventListener('change', updateLayout);
       reducedMotionQuery.removeEventListener('change', updateLayout);
       section.classList.remove('work-motion-ready', 'is-work-active');
+      section.style.removeProperty('--work-heading-opacity');
+      section.style.removeProperty('--work-heading-y');
       cards.forEach((card) => {
         card.style.removeProperty('--work-opacity');
         card.style.removeProperty('--work-y');
