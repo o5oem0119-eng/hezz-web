@@ -482,11 +482,10 @@ export function PublicWebsite() {
                       videoRefs.current[panelIndex] = video;
                     }}
                     src={campaign.video}
-                    poster={segment.poster}
                     autoPlay
                     muted
                     playsInline
-                    preload="metadata"
+                    preload="auto"
                     aria-label={panelIndex === 1 ? 'HEZZ Natural Beauty UGC 캠페인 필름' : undefined}
                     onLoadedMetadata={(event) => setPanelStart(event.currentTarget, panelIndex)}
                     onTimeUpdate={(event) => keepPanelInSegment(event.currentTarget, panelIndex)}

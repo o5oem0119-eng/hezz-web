@@ -767,13 +767,18 @@
   color: var(--ink);
 }
 
-.public-site .statement-section { background: #f0f0ee; }
-.public-site .campaign-section { background: #f8f8f6; }
-.public-site .work-section,
-.public-site .work-sticky { background: #eeeeec; }
+.public-site .statement-section,
+.public-site .campaign-section,
 .public-site .guide-section,
-.public-site .guide-sticky { background: #f6f6f4; }
-.public-site .contact-section { background: #ececea; }
+.public-site .guide-sticky,
+.public-site .contact-section {
+  background: var(--paper);
+}
+
+.public-site .work-section,
+.public-site .work-sticky {
+  background: #f3f3f1;
+}
 
 .public-site .statement-section,
 .public-site .work-section,
