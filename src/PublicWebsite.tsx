@@ -72,10 +72,13 @@ const getMediaQuery = (query: string): MediaQueryList => {
 
 export function PublicWebsite() {
   const videoRefs = useRef<Array<HTMLVideoElement | null>>([]);
+  const heroReadyPanelsRef = useRef(new Set<number>());
+  const heroStartedRef = useRef(false);
   const workSectionRef = useRef<HTMLElement | null>(null);
   const workTrackRef = useRef<HTMLDivElement | null>(null);
   const guideSectionRef = useRef<HTMLElement | null>(null);
   const [isNavScrolled, setIsNavScrolled] = useState(false);
+  const [isHeroReady, setIsHeroReady] = useState(false);
   const [comparisonPosition, setComparisonPosition] = useState(50);
   const [payAppUserId, setPayAppUserId] = useState('');
   const [payAppReady, setPayAppReady] = useState(false);
@@ -454,9 +457,32 @@ export function PublicWebsite() {
     }
   };
 
+  const startHeroTogether = (video: HTMLVideoElement, panelIndex: number) => {
+    if (heroStartedRef.current) return;
+
+    video.pause();
+    heroReadyPanelsRef.current.add(panelIndex);
+    if (heroReadyPanelsRef.current.size < heroSegments.length) return;
+
+    heroStartedRef.current = true;
+    videoRefs.current.forEach((panel, index) => {
+      if (!panel) return;
+      panel.currentTime = heroSegments[index].start;
+    });
+    setIsHeroReady(true);
+
+    if (!getMediaQuery('(prefers-reduced-motion: reduce)').matches) {
+      window.requestAnimationFrame(() => {
+        videoRefs.current.forEach((panel) => {
+          if (panel) void panel.play().catch(() => undefined);
+        });
+      });
+    }
+  };
+
   return (
     <div className="public-site">
-      <header className="public-hero" id="top">
+      <header className={`public-hero${isHeroReady ? ' hero-ready' : ''}`} id="top">
         <nav className={`public-nav${isNavScrolled ? ' public-nav-scrolled' : ''}`} aria-label="공개 사이트 탐색">
           <a className="public-wordmark" href="#top" aria-label="HEZZ STUDIO 처음으로">
             <img src="/assets/web-studio/hezz-studio-logo.png" alt="HEZZ STUDIO" />
@@ -482,12 +508,12 @@ export function PublicWebsite() {
                       videoRefs.current[panelIndex] = video;
                     }}
                     src={campaign.video}
-                    autoPlay
                     muted
                     playsInline
                     preload="auto"
                     aria-label={panelIndex === 1 ? 'HEZZ Natural Beauty UGC 캠페인 필름' : undefined}
                     onLoadedMetadata={(event) => setPanelStart(event.currentTarget, panelIndex)}
+                    onCanPlay={(event) => startHeroTogether(event.currentTarget, panelIndex)}
                     onTimeUpdate={(event) => keepPanelInSegment(event.currentTarget, panelIndex)}
                     onEnded={(event) => keepPanelInSegment(event.currentTarget, panelIndex)}
                   />

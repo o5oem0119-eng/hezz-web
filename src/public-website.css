@@ -48,6 +48,7 @@
   background: #090909;
   color: var(--cream);
 }
+.public-hero:not(.hero-ready) { visibility: hidden; }
 
 .hero-sticky {
   position: relative;
