@@ -623,6 +623,8 @@
   will-change: transform, opacity;
 }
 .guide-action .public-button { min-width: 220px; }
+.guide-purchase { display: grid; justify-items: end; gap: 9px; }
+.guide-test-note { max-width: 280px; margin: 0; color: rgba(242, 239, 232, .58); font-size: 11px; line-height: 1.45; text-align: right; }
 .guide-action .public-button {
   opacity: var(--guide-button-progress);
   transform: translate3d(0, var(--guide-button-y), 0);
@@ -715,7 +717,9 @@
   .guide-copy { min-height: 0; }
   .guide-quote { margin-bottom: 28px !important; }
   .guide-action { align-items: stretch; flex-direction: column; margin-top: 34px; }
+  .guide-purchase { justify-items: stretch; }
   .guide-action .public-button { width: 100%; }
+  .guide-test-note { max-width: none; text-align: left; }
   .contact-section { min-height: 58svh; padding: 84px 21px; }
   .public-footer { padding: 30px 21px 24px; }
   .public-footer .footer-inner { grid-template-columns: 1fr; }
