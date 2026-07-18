@@ -192,6 +192,28 @@ export function PublicWebsite() {
   }, []);
 
   useEffect(() => {
+    if (/jsdom/i.test(navigator.userAgent)) return;
+
+    const reducedMotionQuery = getMediaQuery('(prefers-reduced-motion: reduce)');
+    const syncVideoMotion = () => {
+      const videos = Array.from(document.querySelectorAll<HTMLVideoElement>('.public-site video'));
+
+      videos.forEach((video) => {
+        if (reducedMotionQuery.matches) {
+          video.pause();
+          return;
+        }
+
+        if (video.autoplay) void video.play().catch(() => undefined);
+      });
+    };
+
+    syncVideoMotion();
+    reducedMotionQuery.addEventListener('change', syncVideoMotion);
+    return () => reducedMotionQuery.removeEventListener('change', syncVideoMotion);
+  }, []);
+
+  useEffect(() => {
     const sections = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal-section]'));
     if (sections.length === 0) return;
 
