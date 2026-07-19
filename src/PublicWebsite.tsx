@@ -82,7 +82,7 @@ export function PublicWebsite() {
   const [comparisonPosition, setComparisonPosition] = useState(50);
   const [payAppUserId, setPayAppUserId] = useState('');
   const [payAppReady, setPayAppReady] = useState(false);
-  const payAppTestEnabled = true;
+  const payAppTestEnabled = false;
   const inquirySent = typeof window !== 'undefined'
     && new URLSearchParams(window.location.search).get('inquiry') === 'sent';
   const usesComparisonPlaceholder = campaign.images.comparisonSmoothed === campaign.images.comparisonNatural;
@@ -670,6 +670,9 @@ export function PublicWebsite() {
                   제품 레퍼런스 준비부터 페르소나, 비주얼 바이블, 장면별 프롬프트, 실패 수정과 영상 확장까지
                   실제 제작 순서대로 담았습니다.
                 </p>
+                <p className="campaign-disclosure">
+                  이 페이지의 인물과 제품은 AI로 제작한 가상 캠페인 사례입니다. 실제 제품 광고 또는 실제 사용 후기가 아닙니다.
+                </p>
                 <div className="guide-bonuses">
                   <p><span>기본 구성</span> 가이드북 + 페르소나·비주얼 바이블 워크시트</p>
                   <p><span>후기 혜택</span> 솔직한 구매 후기 작성 시 최종 제작 체크리스트 제공</p>
@@ -679,8 +682,7 @@ export function PublicWebsite() {
                     <button
                       className="public-button public-button-light"
                       type="button"
-                      disabled={!payAppTestEnabled || !payAppReady}
-                      onClick={handlePayAppTest}
+                      disabled
                     >
                       {payAppTestEnabled
                         ? (payAppReady ? '페이앱 테스트 결제 · 1,000원' : '테스트 결제 준비 중')
@@ -735,6 +737,7 @@ export function PublicWebsite() {
                 <input type="checkbox" name="privacy_consent" value="동의" required />
                 <span>문의 답변을 위한 개인정보 수집·이용에 동의합니다. *</span>
               </label>
+              <p className="inquiry-privacy-note">입력한 정보는 문의 답변 목적으로만 사용되며, FormSubmit을 통해 담당 수신함으로 전달됩니다.</p>
               {inquirySent && <p className="inquiry-success" role="status">문의가 접수되었습니다. 확인 후 이메일로 연락드리겠습니다.</p>}
               <button className="public-button inquiry-submit" type="submit">프로젝트 문의 보내기 <span aria-hidden="true">↗</span></button>
             </form>

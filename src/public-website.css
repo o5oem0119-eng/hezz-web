@@ -214,6 +214,7 @@
 .guide-copy h2 { margin: 0 0 18px; font-family: 'Instrument Serif', Georgia, serif; font-size: clamp(57px, 6.7vw, 103px); line-height: .88; font-weight: 400; letter-spacing: -.04em; }
 .guide-subtitle { font-size: clamp(17px, 2vw, 25px); font-weight: 600; letter-spacing: -.035em; }
 .guide-description { max-width: 640px; margin: 28px 0 !important; font-size: 14px; line-height: 1.85; word-break: keep-all; }
+.campaign-disclosure { max-width: 640px; margin: 0 0 22px !important; color: var(--text-muted); font-size: 11px; line-height: 1.6; word-break: keep-all; }
 .guide-price { margin: -4px 0 20px !important; font-family: 'Instrument Serif', Georgia, serif; font-size: 38px; line-height: 1; }
 .honest-state { margin-top: 12px !important; font-size: 9px; }
 .guide-visual { position: relative; min-height: 600px; }
@@ -662,6 +663,7 @@
 .inquiry-form textarea::placeholder { color: rgba(17, 19, 23, .38); }
 .inquiry-consent { display: flex; align-items: flex-start; gap: 10px; color: var(--text-secondary); font-size: 11px; line-height: 1.55; }
 .inquiry-consent input { width: 15px; height: 15px; margin-top: 1px; accent-color: var(--accent); }
+.inquiry-privacy-note { margin: -10px 0 0; color: var(--text-muted); font-size: 11px; line-height: 1.55; }
 .inquiry-submit { width: 100%; border-color: var(--accent); background: var(--accent); color: #fff; }
 .inquiry-success { margin: 0; color: var(--wine); font-size: 13px; font-weight: 600; }
 .inquiry-honeypot { position: absolute !important; left: -9999px !important; width: 1px !important; height: 1px !important; opacity: 0 !important; pointer-events: none !important; }
