@@ -1,6 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot, hydrateRoot } from 'react-dom/client';
-import { PublicWebsite } from './PublicWebsite';
+import { PublicWebsite } from './features/hezz-studio/website/PublicWebsite';
 import './main.css';
 
 const root = document.getElementById('root')!;
