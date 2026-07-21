@@ -55,8 +55,8 @@ Authority: `PUBLIC_WEBSITE_BRIEF.md` defines the final design; this file records
 - [O] 흰 배경, 1400px 컨테이너, 800–850px 텍스트 폭을 적용한다.
 - [O] 최종 제목·본문 크기와 모바일 줄바꿈을 검수한다.
 - [O] 카드, 아이콘, 장식선이 없는지 확인한다.
-- [~] 텍스트 블록을 중앙 정렬로 조정하고, Rank 3 텍스트 기준선을 Rank 4와 맞춘다.
-- [~] 2섹션 배경을 Rank 3과 맞추고 제목의 강조색을 복원한다.
+- [O] 텍스트 블록을 중앙 정렬로 조정하고, Rank 3 텍스트 기준선을 Rank 4와 맞췄다.
+- [O] 2섹션 배경을 Rank 3과 맞추고 제목의 강조색을 복원했다.
 
 ## Rank 3 — Before / After
 
@@ -71,8 +71,8 @@ Authority: `PUBLIC_WEBSITE_BRIEF.md` defines the final design; this file records
 - [~] 비정형 크기와 원본 비율을 사용하는 고정형 가로 갤러리 기반이 구현되어 있다.
 - [~] 승인된 섹션 설명 문구를 적용한다.
 - [~] 하나의 갤러리 안에서 `LIGHT`, `TEXTURE`, `EXPRESSION`, `FRAMING` 그룹이 명확히 구분되도록 구성한다.
-- [ ] 그룹당 승인된 HEZZ 원본 에셋 3–4개를 목표로 한다.
-- [ ] 단순히 이미지 수를 늘리기 위한 무관한 작업물을 제거한다.
+- [~] 그룹당 승인된 HEZZ 원본 에셋을 4개씩 사용한다.
+- [~] 분류 기준을 넘기는 장식성 작업물은 제거한다.
 - [ ] 데스크톱 휠·트랙패드와 모바일 가로 스와이프를 검수한다.
 
 ## Rank 5 — Guidebook
