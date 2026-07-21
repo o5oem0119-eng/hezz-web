@@ -634,7 +634,7 @@ export function PublicWebsite() {
               </p>
             </div>
 
-            <form className="inquiry-form reveal-item" style={{ '--reveal-order': 2 } as CSSProperties} action="https://formsubmit.co/lroi23667@gmail.com" method="POST">
+            <form className="inquiry-form reveal-item" style={{ '--reveal-order': 2 } as CSSProperties} action="https://formsubmit.co/lroi23667@gmail.com" method="POST" acceptCharset="UTF-8">
               <input type="hidden" name="_subject" value="[HEZZ STUDIO] 새로운 프로젝트 문의" />
               <input type="hidden" name="_next" value="https://hezzstudio.site/?inquiry=sent#contact" />
               <input type="hidden" name="_url" value="https://hezzstudio.site/" />
