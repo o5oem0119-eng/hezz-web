@@ -539,7 +539,7 @@ export function PublicWebsite() {
               <h2 className="reveal-item" style={{ '--reveal-order': 0 } as CSSProperties}>
                 만들어진 장면보다,
                 <br />
-                포착된 순간에 가깝게.
+                <span>포착된 순간에 가깝게.</span>
               </h2>
               <p className="statement-primary reveal-item" style={{ '--reveal-order': 1 } as CSSProperties}>
                 AI 특유의 매끄러움과 완벽함 대신,

@@ -55,6 +55,8 @@ Authority: `PUBLIC_WEBSITE_BRIEF.md` defines the final design; this file records
 - [O] 흰 배경, 1400px 컨테이너, 800–850px 텍스트 폭을 적용한다.
 - [O] 최종 제목·본문 크기와 모바일 줄바꿈을 검수한다.
 - [O] 카드, 아이콘, 장식선이 없는지 확인한다.
+- [~] 텍스트 블록을 중앙 정렬로 조정하고, Rank 3 텍스트 기준선을 Rank 4와 맞춘다.
+- [~] 2섹션 배경을 Rank 3과 맞추고 제목의 강조색을 복원한다.
 
 ## Rank 3 — Before / After
 
