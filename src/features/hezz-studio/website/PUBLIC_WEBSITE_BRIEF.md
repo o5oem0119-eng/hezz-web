@@ -144,20 +144,12 @@ Required disclosure:
 
 Rules:
 
-- Use one 4:5 comparison slider.
+- Use one 4:5 `SKIN` comparison slider.
 - Keep the slider with the copy rather than pushing it to the far edge.
 - Cap the slider around 500px on desktop.
 - Keep `SMOOTHED` and `NATURAL TEXTURE` as compact in-image labels.
-- Use pagination within the single slider and reset the handle to 50% when the pair changes.
-- Never render multiple sliders simultaneously.
-
-Approved comparison subjects:
-
-1. `SKIN`
-2. `HAND & MATERIAL`
-3. `PRODUCT SURFACE`
-
-Every pair must keep identity, pose, gaze, light, background, crop, and resolution pixel-aligned. Changed expression or framing belongs in the portfolio, not the comparison slider.
+- Do not add further comparison subjects or pagination without explicit approval.
+- Keep the displayed `SKIN` pair identity, pose, gaze, light, background, crop, and resolution pixel-aligned. Changed expression or framing belongs in the portfolio, not the comparison slider.
 
 ### 5.4 Natural Realism Criteria
 

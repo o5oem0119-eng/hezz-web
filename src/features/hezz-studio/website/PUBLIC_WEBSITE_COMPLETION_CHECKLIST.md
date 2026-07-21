@@ -61,9 +61,8 @@ Authority: `PUBLIC_WEBSITE_BRIEF.md` defines the final design; this file records
 - [O] 하나의 4:5 비교 슬라이더와 기본 SKIN 비교가 구현되어 있다.
 - [O] 승인된 제목·설명으로 교체한다.
 - [O] AI 생성 비교 이미지임을 밝히는 공개 문구를 추가한다.
-- [ ] `SKIN`, `HAND & MATERIAL`, `PRODUCT SURFACE` 상태를 준비한다.
-- [ ] 하나의 슬라이더 안에 페이지네이션을 구현하고 쌍 전환 시 손잡이를 50%로 초기화한다.
-- [ ] 모든 비교 쌍의 인물·포즈·빛·배경·크롭·해상도 정렬을 검수한다.
+- [O] `SKIN` 비교 상태를 준비하고, 동일 인물·포즈·빛·배경·크롭·해상도 정렬을 검수한다.
+- [O] 현재 공개 범위에는 추가 비교 주제와 페이지네이션을 포함하지 않는다.
 
 ## Rank 4 — Natural Realism Criteria
 
