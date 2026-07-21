@@ -626,6 +626,13 @@ export function PublicWebsite() {
           <div className="work-sticky">
             <div className="section-inner work-heading">
               <h2 id="work-heading">자연스러움을 만드는 기준</h2>
+              <p>빛과 질감, 표정과 구도의 작은 불완전함이<br />장면을 더 실제처럼 느껴지게 만듭니다.</p>
+              <ul aria-label="갤러리 기준">
+                <li>LIGHT</li>
+                <li>TEXTURE</li>
+                <li>EXPRESSION</li>
+                <li>FRAMING</li>
+              </ul>
             </div>
             <div className="work-viewport">
               <div className="work-track" ref={workTrackRef}>

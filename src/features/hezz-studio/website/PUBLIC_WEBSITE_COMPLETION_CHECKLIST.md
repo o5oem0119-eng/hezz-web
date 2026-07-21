@@ -67,8 +67,8 @@ Authority: `PUBLIC_WEBSITE_BRIEF.md` defines the final design; this file records
 ## Rank 4 — Natural Realism Criteria
 
 - [~] 비정형 크기와 원본 비율을 사용하는 고정형 가로 갤러리 기반이 구현되어 있다.
-- [ ] 승인된 섹션 설명 문구를 적용한다.
-- [ ] 하나의 갤러리 안에서 `LIGHT`, `TEXTURE`, `EXPRESSION`, `FRAMING` 그룹이 명확히 구분되도록 구성한다.
+- [~] 승인된 섹션 설명 문구를 적용한다.
+- [~] 하나의 갤러리 안에서 `LIGHT`, `TEXTURE`, `EXPRESSION`, `FRAMING` 그룹이 명확히 구분되도록 구성한다.
 - [ ] 그룹당 승인된 HEZZ 원본 에셋 3–4개를 목표로 한다.
 - [ ] 단순히 이미지 수를 늘리기 위한 무관한 작업물을 제거한다.
 - [ ] 데스크톱 휠·트랙패드와 모바일 가로 스와이프를 검수한다.
