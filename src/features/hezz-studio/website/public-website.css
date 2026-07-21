@@ -185,10 +185,14 @@
 .comparison-label { position: absolute; z-index: 3; top: 18px; padding: 8px 10px; background: rgba(255, 255, 255, .86); color: #171819; font-size: 8px; line-height: 1; letter-spacing: .12em; font-weight: 700; pointer-events: none; }
 .comparison-label-left { left: 18px; }
 .comparison-label-right { right: 18px; }
+.comparison-subject { position: absolute; z-index: 3; left: 50%; bottom: 18px; transform: translateX(-50%); color: rgba(255, 255, 255, .9); font-size: 8px; font-weight: 700; letter-spacing: .14em; pointer-events: none; }
 .comparison-divider { position: absolute; z-index: 3; inset-block: 0; width: 1px; background: rgba(255, 255, 255, .94); box-shadow: 0 0 10px rgba(0, 0, 0, .25); pointer-events: none; }
 .comparison-handle { position: absolute; top: 50%; left: 50%; display: grid; place-items: center; width: 48px; height: 48px; transform: translate(-50%, -50%); border: 1px solid rgba(255, 255, 255, .9); border-radius: 50%; background: rgba(255, 255, 255, .92); color: #171819; font-size: 18px; line-height: 1; box-shadow: 0 8px 25px rgba(0, 0, 0, .18); }
 .comparison-range { position: absolute; z-index: 4; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: grab; }
 .comparison-range:active { cursor: grabbing; }
+.comparison-pagination { grid-column: 2; display: flex; flex-wrap: wrap; gap: 8px; margin-top: -26px; }
+.comparison-pagination button { border: 1px solid rgba(17, 19, 23, .24); padding: 8px 10px; background: transparent; color: var(--ink); font: inherit; font-size: 9px; font-weight: 700; letter-spacing: .08em; }
+.comparison-pagination button.active { border-color: var(--ink); background: var(--ink); color: #fff; }
 .film-section {
   display: grid;
   grid-template-columns: minmax(260px, .72fr) minmax(320px, .72fr) minmax(340px, 1fr);
@@ -272,9 +276,11 @@
   .comparison-label { top: 12px; padding: 7px 8px; font-size: 7px; }
   .comparison-label-left { left: 12px; }
   .comparison-label-right { right: 12px; }
+  .comparison-subject { bottom: 12px; }
   .comparison-handle { width: 42px; height: 42px; }
   .campaign-section,
   .method-section { padding: 84px 21px; }
+  .comparison-pagination { grid-column: auto; margin-top: 0; }
   .guide-includes { grid-template-columns: 1fr; }
   .guide-includes ol { grid-template-columns: 1fr; }
   .film-section { grid-template-columns: 1fr; padding: 84px 21px; }

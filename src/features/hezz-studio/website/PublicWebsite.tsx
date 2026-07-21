@@ -27,6 +27,26 @@ const campaign = {
   },
 };
 
+type ComparisonPair = {
+  id: 'skin' | 'hand-material' | 'product-surface';
+  label: 'SKIN' | 'HAND & MATERIAL' | 'PRODUCT SURFACE';
+  natural: string;
+  smoothed: string;
+  naturalAlt: string;
+  rangeLabel: string;
+};
+
+const comparisonPairs: readonly ComparisonPair[] = [
+  {
+    id: 'skin',
+    label: 'SKIN',
+    natural: campaign.images.comparisonNatural,
+    smoothed: campaign.images.comparisonSmoothed,
+    naturalAlt: '모공과 미세한 피부결이 자연스럽게 남아 있는 AI 인물',
+    rangeLabel: '매끄러운 AI 피부와 자연스러운 피부결 비교',
+  },
+];
+
 const criteriaWorks = [
   { criterion: 'FRAMING', title: '조금은 어색한 구도', description: '여백과 비대칭이 남아 있는 전신 패션 프레임.', type: 'image', src: '/assets/hezz-studio/website/gallery/full-body-fashion.png', alt: '흰 스튜디오에서 촬영한 전신 패션 모델', left: '2%', top: '1%', height: 'clamp(390px, 52svh, 560px)' },
   { criterion: 'LIGHT', title: '고르지 않은 빛', description: '한쪽에서 들어오는 자연광과 노출 차이를 그대로 남깁니다.', type: 'image', src: campaign.images.room, alt: '자연광 아래 촬영한 HEZZ 스킨케어 장면', left: '8%', top: '37%', height: 'clamp(230px, 31svh, 340px)' },
@@ -80,12 +100,19 @@ export function PublicWebsite() {
   const [isNavScrolled, setIsNavScrolled] = useState(false);
   const [isHeroReady, setIsHeroReady] = useState(false);
   const [comparisonPosition, setComparisonPosition] = useState(50);
+  const [activeComparisonIndex, setActiveComparisonIndex] = useState(0);
   const [payAppUserId, setPayAppUserId] = useState('');
   const [payAppReady, setPayAppReady] = useState(false);
   const payAppTestEnabled = true;
   const inquirySent = typeof window !== 'undefined'
     && new URLSearchParams(window.location.search).get('inquiry') === 'sent';
-  const usesComparisonPlaceholder = campaign.images.comparisonSmoothed === campaign.images.comparisonNatural;
+  const activeComparison = comparisonPairs[activeComparisonIndex];
+  const usesComparisonPlaceholder = activeComparison.smoothed === activeComparison.natural;
+
+  const selectComparisonPair = (nextIndex: number) => {
+    setActiveComparisonIndex(nextIndex);
+    setComparisonPosition(50);
+  };
 
   useLayoutEffect(() => {
     window.history.scrollRestoration = 'manual';
@@ -564,18 +591,21 @@ export function PublicWebsite() {
                 <h3 className="reveal-item" style={{ '--reveal-order': 0 } as CSSProperties}>같은 인물,<br />다른 현실감.</h3>
               </div>
               <p className="reveal-item" style={{ '--reveal-order': 1 } as CSSProperties}>
-                과한 보정과 지나치게 매끈한 피부를 걷어내고, 실제 순간에 가까운 질감과 빛을 남겼습니다.
-                바를 좌우로 움직여 차이를 확인해보세요.
+                완벽한 대칭과 과한 보정을 걷어내고,<br />
+                실제 순간에 가까운 표정과 피부 질감을 남깁니다.
+              </p>
+              <p className="comparison-disclosure reveal-item" style={{ '--reveal-order': 2 } as CSSProperties}>
+                동일한 AI 생성 인물·구도 기반의 질감 비교 이미지입니다.
               </p>
             </div>
 
             <div
               className="comparison-frame reveal-item"
-              style={{ touchAction: 'pan-y', '--reveal-order': 2 } as CSSProperties}
+              style={{ touchAction: 'pan-y', '--reveal-order': 3 } as CSSProperties}
             >
               <img
-                src={campaign.images.comparisonNatural}
-                alt="모공과 미세한 피부결이 자연스럽게 남아 있는 AI 인물"
+                src={activeComparison.natural}
+                alt={activeComparison.naturalAlt}
                 className="comparison-image"
                 loading="lazy"
                 draggable={false}
@@ -586,7 +616,7 @@ export function PublicWebsite() {
                 aria-hidden="true"
               >
                 <img
-                  src={campaign.images.comparisonSmoothed}
+                  src={activeComparison.smoothed}
                   alt=""
                   className={`comparison-image${usesComparisonPlaceholder ? ' comparison-placeholder' : ''}`}
                   loading="lazy"
@@ -596,6 +626,7 @@ export function PublicWebsite() {
 
               <span className="comparison-label comparison-label-left">SMOOTHED</span>
               <span className="comparison-label comparison-label-right">NATURAL TEXTURE</span>
+              <span className="comparison-subject" aria-hidden="true">{activeComparison.label}</span>
               <div className="comparison-divider" style={{ left: `${comparisonPosition}%` }} aria-hidden="true">
                 <span className="comparison-handle">‹&nbsp;&nbsp;›</span>
               </div>
@@ -606,10 +637,25 @@ export function PublicWebsite() {
                 max="100"
                 value={comparisonPosition}
                 onChange={(event) => setComparisonPosition(Number(event.target.value))}
-                aria-label="매끄러운 AI 피부와 자연스러운 피부결 비교"
+                aria-label={activeComparison.rangeLabel}
                 aria-valuetext={`매끄러운 이미지가 ${comparisonPosition}% 보임`}
               />
             </div>
+            {comparisonPairs.length > 1 ? (
+              <div className="comparison-pagination" aria-label="비교 이미지 선택">
+                {comparisonPairs.map((pair, index) => (
+                  <button
+                    aria-current={index === activeComparisonIndex ? 'true' : undefined}
+                    className={index === activeComparisonIndex ? 'active' : undefined}
+                    key={pair.id}
+                    onClick={() => selectComparisonPair(index)}
+                    type="button"
+                  >
+                    {pair.label}
+                  </button>
+                ))}
+              </div>
+            ) : null}
           </div>
         </section>
 
