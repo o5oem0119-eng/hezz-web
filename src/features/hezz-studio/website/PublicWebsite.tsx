@@ -2,16 +2,6 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import type { CSSProperties } from 'react';
 import './public-website.css';
 
-type PayAppClient = {
-  call: (params?: Record<string, string>) => void;
-};
-
-declare global {
-  interface Window {
-    PayApp?: PayAppClient;
-  }
-}
-
 const campaign = {
   name: 'Natural Beauty UGC',
   video: '/assets/hezz-studio/website/hezz-ugc-first-cut.mp4',
@@ -79,9 +69,6 @@ export function PublicWebsite() {
   const [isNavScrolled, setIsNavScrolled] = useState(false);
   const [isHeroReady, setIsHeroReady] = useState(false);
   const [comparisonPosition, setComparisonPosition] = useState(50);
-  const [payAppUserId, setPayAppUserId] = useState('');
-  const [payAppReady, setPayAppReady] = useState(false);
-  const payAppTestEnabled = true;
   const inquirySent = typeof window !== 'undefined'
     && new URLSearchParams(window.location.search).get('inquiry') === 'sent';
   const usesComparisonPlaceholder = campaign.images.comparisonSmoothed === campaign.images.comparisonNatural;
@@ -113,78 +100,6 @@ export function PublicWebsite() {
       window.removeEventListener('load', resetScroll);
     };
   }, []);
-
-  useEffect(() => {
-    if (!payAppTestEnabled || /jsdom/i.test(navigator.userAgent)) return;
-
-    let cancelled = false;
-    const scriptId = 'payapp-lite-script';
-
-    const loadPayApp = async () => {
-      try {
-        const response = await fetch('/api/payapp-config', { headers: { Accept: 'application/json' } });
-        if (!response.ok) throw new Error('페이앱 설정을 불러오지 못했습니다.');
-        const config = await response.json() as { userId?: string };
-        if (!config.userId) throw new Error('페이앱 판매자 아이디가 설정되지 않았습니다.');
-
-        let script = document.getElementById(scriptId) as HTMLScriptElement | null;
-        if (!script) {
-          script = document.createElement('script');
-          script.id = scriptId;
-          script.src = 'https://lite.payapp.kr/public/api/v2/payapp-lite.js';
-          script.async = true;
-          document.head.appendChild(script);
-        }
-
-        if (!window.PayApp) {
-          await new Promise<void>((resolve, reject) => {
-            script?.addEventListener('load', () => resolve(), { once: true });
-            script?.addEventListener('error', () => reject(new Error('페이앱 결제 모듈을 불러오지 못했습니다.')), { once: true });
-          });
-        }
-
-        if (!cancelled && window.PayApp) {
-          setPayAppUserId(config.userId);
-          setPayAppReady(true);
-        }
-      } catch (error) {
-        console.error(error);
-        if (!cancelled) setPayAppReady(false);
-      }
-    };
-
-    void loadPayApp();
-    return () => {
-      cancelled = true;
-    };
-  }, [payAppTestEnabled]);
-
-  const handlePayAppTest = () => {
-    if (!payAppTestEnabled || !payAppReady || !payAppUserId || !window.PayApp) {
-      window.alert('페이앱 테스트 결제를 준비하고 있습니다. 잠시 후 다시 시도해주세요.');
-      return;
-    }
-
-    const approved = window.confirm(
-      '페이앱 연동 확인용 1,000원 결제입니다. 실제 승인이 발생할 수 있으므로 테스트 결제 정책과 취소 상태를 반드시 확인해주세요.',
-    );
-    if (!approved) return;
-
-    const origin = window.location.origin;
-    window.PayApp.call({
-      userid: payAppUserId,
-      shopname: 'HEZZ STUDIO',
-      goodname: 'Natural Beauty UGC 제작 가이드 연동 테스트',
-      price: '1000',
-      memo: 'HEZZ STUDIO 페이앱 연동 테스트',
-      reqaddr: '0',
-      smsuse: 'n',
-      openpaytype: 'card',
-      feedbackurl: `${origin}/api/payapp-feedback`,
-      returnurl: `${origin}/?payment=test-complete#guide`,
-      checkretry: 'y',
-    });
-  };
 
   useEffect(() => {
     const updateNav = () => setIsNavScrolled(window.scrollY > 24);
@@ -688,29 +603,22 @@ export function PublicWebsite() {
                 <p className="guide-quote">완벽한 구도는 기억에 남지 않습니다.<br />기억에 남는 건 언제나 그 사이의 어딘가였습니다.</p>
                 <h2>Natural Beauty UGC<br />제작 가이드</h2>
                 <p className="guide-description">
-                  제품 레퍼런스 준비부터 페르소나, 비주얼 바이블, 장면별 프롬프트, 실패 수정과 영상 확장까지
-                  실제 제작 순서대로 담았습니다.
+                  프롬프트를 모아둔 문서가 아니라, 기준을 세우고 장면을 설계한 뒤 결과를 검수하는
+                  실제 제작 방법을 순서대로 정리했습니다.
                 </p>
-                <div className="guide-bonuses">
-                  <p><span>기본 구성</span> 가이드북 + 페르소나·비주얼 바이블 워크시트</p>
-                  <p><span>후기 혜택</span> 솔직한 구매 후기 작성 시 최종 제작 체크리스트 제공</p>
+                <div className="guide-toc">
+                  <p className="guide-toc-label">목차 미리보기</p>
+                  <ol>
+                    <li>실제 장면처럼 보이는 AI 이미지의 기준</li>
+                    <li>베이스 이미지와 비주얼 바이블</li>
+                    <li>인물·제품·손의 일관성</li>
+                    <li>빛, 질감, 프레임의 장면 설계</li>
+                    <li>스틸에서 짧은 영상으로 확장하기</li>
+                    <li>최종 검수 체크리스트</li>
+                  </ol>
                 </div>
                 <div className="guide-action">
-                  <div className="guide-purchase">
-                    <button
-                      className="public-button public-button-light"
-                      type="button"
-                      disabled={!payAppTestEnabled || !payAppReady}
-                      onClick={handlePayAppTest}
-                    >
-                      {payAppTestEnabled
-                        ? (payAppReady ? '페이앱 테스트 결제 · 1,000원' : '테스트 결제 준비 중')
-                        : '구매 준비 중'}
-                    </button>
-                    {payAppTestEnabled && (
-                      <p className="guide-test-note">연동 확인 전용 · 실제 결제 승인 및 취소 상태를 페이앱에서 확인하세요.</p>
-                    )}
-                  </div>
+                  <p className="guide-launch-note">가이드 공개 준비 중 · 출시 소식은 프로젝트 문의를 통해 안내합니다.</p>
                 </div>
               </div>
             </div>
