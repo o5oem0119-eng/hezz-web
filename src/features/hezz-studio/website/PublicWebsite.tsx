@@ -637,6 +637,7 @@ export function PublicWebsite() {
             <form className="inquiry-form reveal-item" style={{ '--reveal-order': 2 } as CSSProperties} action="https://formsubmit.co/lroi23667@gmail.com" method="POST">
               <input type="hidden" name="_subject" value="[HEZZ STUDIO] 새로운 프로젝트 문의" />
               <input type="hidden" name="_next" value="https://hezzstudio.site/?inquiry=sent#contact" />
+              <input type="hidden" name="_url" value="https://hezzstudio.site/" />
               <input type="hidden" name="_template" value="table" />
               <input type="text" name="_honey" className="inquiry-honeypot" tabIndex={-1} autoComplete="off" />
 
