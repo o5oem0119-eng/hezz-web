@@ -471,13 +471,15 @@ export function PublicWebsite() {
     });
     setIsHeroReady(true);
 
-    if (!getMediaQuery('(prefers-reduced-motion: reduce)').matches) {
-      window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => {
+      document.documentElement.classList.add('hero-app-ready');
+
+      if (!getMediaQuery('(prefers-reduced-motion: reduce)').matches) {
         videoRefs.current.forEach((panel) => {
           if (panel) void panel.play().catch(() => undefined);
         });
-      });
-    }
+      }
+    });
   };
 
   return (
