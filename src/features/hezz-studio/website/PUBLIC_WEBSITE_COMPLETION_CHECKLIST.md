@@ -87,9 +87,9 @@ Authority: `PUBLIC_WEBSITE_BRIEF.md` defines the final design; this file records
 ## Rank 6 — Project Inquiry
 
 - [~] 실제 FormSubmit 목적지와 필수·선택 입력 필드를 사용하는 폼이 구현되어 있다.
-- [ ] 승인된 문의 섹션 문구로 교체한다.
-- [ ] 이름, 이메일, 문의 유형, 설명을 필수로 유지한다.
-- [ ] 브랜드명, 일정, 예산, 참고 URL을 선택 항목으로 유지한다.
+- [~] 승인된 문의 섹션 문구로 교체한다.
+- [~] 이름, 이메일, 문의 유형, 설명을 필수로 유지한다.
+- [~] 브랜드명, 일정, 예산, 참고 URL을 선택 항목으로 유지한다.
 - [ ] 스팸 방지, 개인정보 동의, 성공 안내, 모바일·키보드 사용성을 실제 전송으로 검수한다.
 
 ## Rank 7 — Footer and Shared Visual System

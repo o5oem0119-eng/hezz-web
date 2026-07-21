@@ -630,7 +630,7 @@ export function PublicWebsite() {
             <div className="contact-copy">
               <h2 className="reveal-item" style={{ '--reveal-order': 0 } as CSSProperties}>브랜드의 다음 장면,<br /><span>같이 찾아볼까요?</span></h2>
               <p className="reveal-item" style={{ '--reveal-order': 1 } as CSSProperties}>
-                제품과 브랜드의 분위기에 맞는 AI 이미지와 영상 캠페인을 함께 설계합니다.
+                AI 이미지·영상 광고, 브랜드 콘텐츠,<br />캠페인 비주얼을 제작합니다.
               </p>
             </div>
 
