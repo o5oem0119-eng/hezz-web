@@ -675,7 +675,7 @@ export function PublicWebsite() {
         <div className="section-inner footer-inner">
           <img src="/assets/hezz-studio/website/hezz-studio-logo.png" alt="HEZZ STUDIO" />
           <nav aria-label="푸터 탐색">
-            <a href="#work">Work</a><a href="#guide">Guide</a><a href="#contact">Contact</a>
+            <a href="#work">WORK</a><a href="#guide">GUIDEBOOK</a><a href="#contact">CONTACT</a>
           </nav>
           <p>© 2026 HEZZ STUDIO</p>
         </div>

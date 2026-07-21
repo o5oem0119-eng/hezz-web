@@ -95,9 +95,9 @@ Authority: `PUBLIC_WEBSITE_BRIEF.md` defines the final design; this file records
 ## Rank 7 — Footer and Shared Visual System
 
 - [~] HEZZ STUDIO 로고와 Work·Guide·Contact 탐색을 사용하는 푸터 기반이 구현되어 있다.
-- [ ] Pretendard 단일 타이포그래피를 전체 화면에서 확인한다.
-- [ ] 흰색·웜그레이 본문 표면과 승인된 텍스트 색상 체계를 적용한다.
-- [ ] 딥와인 푸터 색상과 보조 정보 투명도를 검수한다.
+- [~] Pretendard 단일 타이포그래피를 전체 화면에서 확인한다.
+- [~] 흰색·웜그레이 본문 표면과 승인된 텍스트 색상 체계를 적용한다.
+- [~] 딥와인 푸터 색상과 보조 정보 투명도를 검수한다.
 - [ ] 실제 이메일·소셜·사업자 정보·약관·개인정보 목적지만 표시한다.
 - [ ] 사용할 수 없는 링크와 임시 `#` 링크를 제거한다.
 

@@ -382,16 +382,16 @@
 
 /* Unified HEZZ STUDIO public-site system */
 .public-site {
-  --paper: #f2efe8;
+  --paper: #f5f4f2;
   --surface: #fff;
-  --ink: #111317;
-  --text-secondary: #55504d;
-  --text-muted: #7a736e;
+  --ink: #171717;
+  --text-secondary: #626262;
+  --text-muted: #737373;
   --deep: #111317;
   --deep-raised: #191c22;
   --accent: #d62f46;
-  --wine: #681d2b;
-  --cream: #f2efe8;
+  --wine: #581824;
+  --cream: #f8f6f2;
   --page-gutter: clamp(21px, 4vw, 60px);
   --section-space: clamp(88px, 7vw, 116px);
 }
