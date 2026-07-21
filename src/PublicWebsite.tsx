@@ -525,7 +525,7 @@ export function PublicWebsite() {
             <div className="hero-shade" />
             <div className="hero-brand" aria-label="HEZZ STUDIO">
               <img src="/assets/web-studio/hezz-studio-logo.png" alt="" />
-              <p>NATURAL REALISM <span>·</span> CAPTURED MOMENTS</p>
+              <p>AI CREATIVE STUDIO</p>
             </div>
           </div>
         </div>
