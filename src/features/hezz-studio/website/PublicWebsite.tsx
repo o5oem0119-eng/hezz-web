@@ -406,7 +406,7 @@ export function PublicWebsite() {
           <div className="public-nav-links">
             <a href="#work">Work</a>
             <a href="#guide">Guide</a>
-            <a href="/lab-notes">Lab Note</a>
+            <a href="#lab-note">Lab Note</a>
             <a href="#contact">Contact</a>
           </div>
         </nav>
@@ -626,6 +626,40 @@ export function PublicWebsite() {
           </div>
         </section>
 
+        <section className="lab-note-home-section" id="lab-note" aria-labelledby="lab-note-home-heading">
+          <div className="section-inner lab-note-home-inner">
+            <div className="lab-note-home-copy">
+              <p className="lab-note-home-eyebrow">LAB NOTE</p>
+              <h2 id="lab-note-home-heading">결과만이 아니라,<br />만드는 과정까지 기록합니다.</h2>
+              <p>
+                이미지와 영상이 완성되기까지의 판단 기준, 사용한 프롬프트와 설정,
+                실패한 시도와 수정 과정을 하나의 제작 기록으로 정리합니다.
+              </p>
+              <a className="public-button lab-note-home-button" href="/lab-notes">
+                Lab Note 보러 가기 <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+
+            <a className="lab-note-home-card" href="/lab-notes" aria-label="HEZZ STUDIO Lab Note 목록 보기">
+              <div className="lab-note-home-card-topline">
+                <span>HEZZ STUDIO</span>
+                <span>PROCESS ARCHIVE</span>
+              </div>
+              <div className="lab-note-home-card-body">
+                <span className="lab-note-home-card-number">01</span>
+                <div>
+                  <p>IMAGE · VIDEO · PROMPT</p>
+                  <strong>제작 과정과 판단을<br />다시 사용할 수 있는 기록으로</strong>
+                </div>
+              </div>
+              <div className="lab-note-home-card-footer">
+                <span>LAB NOTE ARCHIVE</span>
+                <span aria-hidden="true">→</span>
+              </div>
+            </a>
+          </div>
+        </section>
+
         <section className="contact-section reveal-section" id="contact" data-reveal-section>
           <div className="section-inner contact-inner">
             <div className="contact-copy">
@@ -677,7 +711,7 @@ export function PublicWebsite() {
         <div className="section-inner footer-inner">
           <img src="/assets/hezz-studio/website/hezz-studio-logo.png" alt="HEZZ STUDIO" />
           <nav aria-label="푸터 탐색">
-            <a href="#work">WORK</a><a href="#guide">GUIDEBOOK</a><a href="/lab-notes">LAB NOTE</a><a href="#contact">CONTACT</a>
+            <a href="#work">WORK</a><a href="#guide">GUIDEBOOK</a><a href="#lab-note">LAB NOTE</a><a href="#contact">CONTACT</a>
           </nav>
           <p>© 2026 HEZZ STUDIO</p>
         </div>
