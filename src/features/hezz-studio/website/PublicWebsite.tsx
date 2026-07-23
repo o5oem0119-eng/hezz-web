@@ -406,6 +406,7 @@ export function PublicWebsite() {
           <div className="public-nav-links">
             <a href="#work">Work</a>
             <a href="#guide">Guide</a>
+            <a href="/lab-notes">Lab Note</a>
             <a href="#contact">Contact</a>
           </div>
         </nav>
@@ -676,7 +677,7 @@ export function PublicWebsite() {
         <div className="section-inner footer-inner">
           <img src="/assets/hezz-studio/website/hezz-studio-logo.png" alt="HEZZ STUDIO" />
           <nav aria-label="푸터 탐색">
-            <a href="#work">WORK</a><a href="#guide">GUIDEBOOK</a><a href="#contact">CONTACT</a>
+            <a href="#work">WORK</a><a href="#guide">GUIDEBOOK</a><a href="/lab-notes">LAB NOTE</a><a href="#contact">CONTACT</a>
           </nav>
           <p>© 2026 HEZZ STUDIO</p>
         </div>

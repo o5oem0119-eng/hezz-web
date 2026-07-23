@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/lab-notes", "destination": "/index.html" },
+    { "source": "/lab-notes/:slug([a-z0-9-]+)", "destination": "/index.html" }
+  ]
+}
