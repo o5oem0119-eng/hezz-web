@@ -2,6 +2,9 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import type { CSSProperties } from 'react';
 import './public-website.css';
 
+type LabNoteHomeMedia = { id: string; sourceId: string; kind: 'image' | 'video'; label: string; contentType: string; url: string };
+type LabNoteHomeItem = { slug: string; title: string; oneLineDescription: string; cover: LabNoteHomeMedia; toolNames: string[] };
+
 const campaign = {
   name: 'Natural Beauty UGC',
   video: '/assets/hezz-studio/website/hezz-ugc-first-cut.mp4',
@@ -69,6 +72,7 @@ export function PublicWebsite() {
   const [isNavScrolled, setIsNavScrolled] = useState(false);
   const [isHeroReady, setIsHeroReady] = useState(false);
   const [comparisonPosition, setComparisonPosition] = useState(50);
+  const [labNotePreviews, setLabNotePreviews] = useState<LabNoteHomeItem[]>([]);
   const inquirySent = typeof window !== 'undefined'
     && new URLSearchParams(window.location.search).get('inquiry') === 'sent';
   const usesComparisonPlaceholder = campaign.images.comparisonSmoothed === campaign.images.comparisonNatural;
@@ -106,6 +110,21 @@ export function PublicWebsite() {
     updateNav();
     window.addEventListener('scroll', updateNav, { passive: true });
     return () => window.removeEventListener('scroll', updateNav);
+  }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch('/lab-notes/index.json', { cache: 'no-store' })
+      .then((response) => (response.ok ? response.json() as Promise<LabNoteHomeItem[]> : []))
+      .then((items) => {
+        if (!cancelled) setLabNotePreviews(items.slice(0, 3));
+      })
+      .catch(() => {
+        if (!cancelled) setLabNotePreviews([]);
+      });
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   useEffect(() => {
@@ -406,6 +425,7 @@ export function PublicWebsite() {
           <div className="public-nav-links">
             <a href="#work">Work</a>
             <a href="#guide">Guide</a>
+            <a href="/lab-notes">Lab Note</a>
             <a href="#contact">Contact</a>
           </div>
         </nav>
@@ -625,6 +645,48 @@ export function PublicWebsite() {
           </div>
         </section>
 
+        <section className="lab-note-home-section reveal-section" id="lab-note" aria-labelledby="lab-note-home-heading" data-reveal-section>
+          <div className="section-inner lab-note-home-inner">
+            <div className="lab-note-home-heading">
+              <p className="lab-note-home-eyebrow reveal-item" style={{ '--reveal-order': 0 } as CSSProperties}>LAB NOTE</p>
+              <h2 id="lab-note-home-heading" className="reveal-item" style={{ '--reveal-order': 1 } as CSSProperties}>
+                결과만이 아니라,
+                <br />
+                만드는 과정까지 기록합니다.
+              </h2>
+              <p className="lab-note-home-description reveal-item" style={{ '--reveal-order': 2 } as CSSProperties}>
+                이미지와 영상이 완성되기까지의 판단 기준, 사용한 프롬프트와 설정,
+                실패한 시도와 수정 과정을 하나의 제작 기록으로 정리합니다.
+              </p>
+              <a className="public-button public-button-dark lab-note-home-button reveal-item" style={{ '--reveal-order': 3 } as CSSProperties} href="/lab-notes">
+                Lab Note 모두 보기 <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+
+            {labNotePreviews.length > 0 ? (
+              <div className="lab-note-home-grid reveal-item" style={{ '--reveal-order': 4 } as CSSProperties} aria-label="최근 Lab Note">
+                {labNotePreviews.map((item) => (
+                  <a className="lab-note-home-card" href={`/lab-notes/${item.slug}`} key={item.slug}>
+                    <div className="lab-note-home-card-media">
+                      <img src={item.cover.url} alt={item.cover.label} loading="lazy" />
+                    </div>
+                    <div className="lab-note-home-card-body">
+                      <p className="lab-note-home-card-tools">{item.toolNames.join(' · ')}</p>
+                      <h3>{item.title}</h3>
+                      <p>{item.oneLineDescription}</p>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            ) : (
+              <a className="lab-note-home-empty reveal-item" style={{ '--reveal-order': 4 } as CSSProperties} href="/lab-notes">
+                <p>첫 Lab Note를 준비하고 있습니다.</p>
+                <span>공개되는 대로 이곳에서 가장 먼저 보여드릴게요 <span aria-hidden="true">→</span></span>
+              </a>
+            )}
+          </div>
+        </section>
+
         <section className="contact-section reveal-section" id="contact" data-reveal-section>
           <div className="section-inner contact-inner">
             <div className="contact-copy">
@@ -676,7 +738,7 @@ export function PublicWebsite() {
         <div className="section-inner footer-inner">
           <img src="/assets/hezz-studio/website/hezz-studio-logo.png" alt="HEZZ STUDIO" />
           <nav aria-label="푸터 탐색">
-            <a href="#work">WORK</a><a href="#guide">GUIDEBOOK</a><a href="#contact">CONTACT</a>
+            <a href="#work">WORK</a><a href="#guide">GUIDEBOOK</a><a href="/lab-notes">LAB NOTE</a><a href="#contact">CONTACT</a>
           </nav>
           <p>© 2026 HEZZ STUDIO</p>
         </div>
