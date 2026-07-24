@@ -670,7 +670,7 @@
 .lab-note-home-eyebrow { color: var(--accent); font-size: 12px; font-weight: 700; letter-spacing: .16em; }
 .lab-note-home-heading h2 { margin: 14px 0 22px; font-family: 'Instrument Serif', Georgia, serif; font-size: clamp(38px, 4.4vw, 64px); line-height: 1.05; letter-spacing: -.03em; color: var(--ink); word-break: keep-all; }
 .lab-note-home-description { max-width: 420px; margin: 0 0 30px; color: var(--text-secondary); font-size: 14px; line-height: 1.85; word-break: keep-all; }
-.lab-note-home-button { min-width: 200px; }
+.lab-note-home-button { min-width: 200px; border-color: var(--accent); background: var(--accent); color: #fff !important; }
 .lab-note-home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 28px; }
 .lab-note-home-card { display: flex; flex-direction: column; background: var(--paper); overflow: hidden; transition: transform .3s ease, box-shadow .3s ease; }
 .lab-note-home-card:hover { transform: translateY(-4px); box-shadow: 0 22px 44px rgba(17, 19, 23, .12); }

@@ -658,7 +658,7 @@ export function PublicWebsite() {
                 이미지와 영상이 완성되기까지의 판단 기준, 사용한 프롬프트와 설정,
                 실패한 시도와 수정 과정을 하나의 제작 기록으로 정리합니다.
               </p>
-              <a className="public-button public-button-dark lab-note-home-button reveal-item" style={{ '--reveal-order': 3 } as CSSProperties} href="/lab-notes">
+              <a className="public-button lab-note-home-button reveal-item" style={{ '--reveal-order': 3 } as CSSProperties} href="/lab-notes">
                 Lab Note 모두 보기 <span aria-hidden="true">↗</span>
               </a>
             </div>
