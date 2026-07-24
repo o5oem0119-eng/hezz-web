@@ -150,7 +150,7 @@
 .public-button:not(:disabled) { cursor: pointer; }
 
 .public-button-light { min-width: 220px; background: var(--cream); color: var(--ink) !important; }
-.public-button-dark { min-width: 225px; background: var(--ink); color: var(--paper); }
+.public-button-dark { min-width: 225px; background: var(--ink); color: var(--paper) !important; }
 .public-button:disabled { cursor: not-allowed; opacity: .62; }
 .film-control { display: inline-flex; align-items: center; gap: 10px; border: 0; padding: 10px; background: transparent; color: var(--cream); font: inherit; font-size: 11px; cursor: pointer; }
 .pause-icon { width: 9px; height: 11px; border-left: 2px solid currentColor; border-right: 2px solid currentColor; }
